@@ -1,8 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        filter: blur(2px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
 
 html {
     overflow: hidden;
-    font-family: "Poppins", sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 body {
@@ -18,54 +35,80 @@ body {
     display: none;
     z-index: 5;
     color: #fff;
-    width: 15%;
+    width: 450px;
     position: fixed;
-    bottom: 15%;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: "Poppins", sans-serif;
-}
-
-.progress-labels {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#progress-label {
-    font-size: 1.3vh;
-    line-height: 4vh;
-    position: relative;
-    color: #ffffff;
-    z-index: 10;
-    font-weight: bold;
-}
-
-#progress-percentage {
-    font-size: 1.3vh;
-    line-height: 4vh;
-    position: relative;
-    color: #ffffff;
-    z-index: 10;
-    font-weight: bold;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Oswald", sans-serif;
 }
 
 .progress-bar-container {
-    background: rgba(0, 0, 0, 0.246);
-    height: 0.5vh;
     position: relative;
-    display: block;
-    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
 }
 
-#progress-bar {
-    background-color: #dc143c;
-    width: 0%;
-    height: 0.5vh;
-    border-radius: 2px;
-    transition: width 0.3s;
-    transition-timing-function: ease-out;
-    box-shadow: 0 0 10px rgba(220, 20, 60, 0.6);
+.hexagon-container {
+    display: flex;
+    gap: 6px;
+    height: 28px;
+    justify-content: center;
+}
+
+.hexagon {
+    width: 32px;
+    height: 36px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(43, 57, 98, .4) 0, rgba(36, 39, 63, .7) 100%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: background-color 0.3s ease;
+    opacity: 0;
+}
+
+.hexagon.active {
+    background: radial-gradient(circle at center, rgba(86, 253, 253, 0.2) 0%, rgba(86, 253, 253, 1) 100%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 15px rgba(64, 224, 208, 0.6);
+}
+
+.hexagon.canceled {
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.2) 0%, rgba(255, 0, 0, 1) 100%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.hexagon.fading {
+    animation: fade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#progress-percentage {
+    font-size: 1.8vh;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    margin-bottom: -6px;
+}
+
+#progress-percentage .number {
+    color: white;
+}
+
+#progress-percentage .percent-symbol {
+    color: rgba(86, 253, 253, 1);
+}
+
+#progress-percentage.canceled .percent-symbol {
+    display: none;
+}
+
+#progress-label {
+    color: white;
+    font-size: 1.8vh;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    margin-top: 6px;
 }
