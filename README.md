@@ -2,6 +2,10 @@
 
 Dependency for creating progressbars in QB-Core.
 
+# Preview
+![image](https://github.com/user-attachments/assets/5fb89138-3e62-4dd4-b793-8138ec801782)
+
+
 # Usage
 
 ## QB-Core Functions
